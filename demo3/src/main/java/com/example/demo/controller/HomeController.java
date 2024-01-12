@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +28,7 @@ public class HomeController {
 	// /param1 주소를 처리하기 위한 메서드
 	@GetMapping("/param1")
 	// p1이라는 이름으로 전달된 파라미터를 받아서 String p1에 담는다.
-	public String param1(@RequestParam ("p1") String p1) {
+	public String param1(@RequestParam ("p1") String p1) 	{
 		System.out.println("p1" + p1);
 		return "index";
 	}
@@ -54,6 +55,25 @@ public class HomeController {
 		return "index";
 		
 	}
+	
+	@GetMapping("/model1")
+	public String model1(Model model) {
+		String str1 = "오늘은 금요일";
+		// 화면에 가져갈 데이터를 담음
+		model.addAttribute("s1", str1);
+		return "model1";
+	}
+	
+	@GetMapping("/form2")
+	public String form2() {
+		return "form2";
+	}
+	@PostMapping("/form-param2")
+	public String formParam2(@RequestParam("s1") String s1, Model model) {
+		model.addAttribute("s1", s1);
+		return "model2";
+	}
+	
 }
 
 
