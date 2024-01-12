@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>hello SpringBoot!!</h2>
+	<!-- hi 주소를 요청하기 위한 링크 -->
+	<a href="/hi">hi 주소요청</a>
+	<!--  주소요청 & 파라미터 보내기 -->
+	<!-- 주소이름: /param1  
+		 보낼 파라미터: p1='aa'-->
+</body>
+</html>
