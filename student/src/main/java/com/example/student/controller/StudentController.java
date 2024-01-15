@@ -1,5 +1,7 @@
 package com.example.student.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,4 +33,33 @@ public class StudentController {
 		studentService.save(studentDTO);
 		return "index";
 	}
+	
+	@GetMapping("/list")
+	public String findAll(Model model) {
+		// DB에서 목록 데이터를 가져옴
+		List<StudentDTO> studentDTOs = studentService.findAll();
+		// 리스트 데이터를 model에 담음
+		model.addAttribute("studentList", studentDTOs);
+		// list.html로 이동
+		return "list";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

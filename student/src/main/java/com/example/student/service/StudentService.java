@@ -1,5 +1,7 @@
 package com.example.student.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,10 @@ public class StudentService {
 		System.out.println("StudentService.save()");
 		System.out.println("StudentDTO = " + studentDTO);
 		studentRepository.save(studentDTO);
+	}
+
+	public List<StudentDTO> findAll() {
+		return studentRepository.finAll();
 	}
 	
 
