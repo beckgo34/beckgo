@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>save.html</h2>
+	<!-- 이름(studentName), 학번(studentNumber), 전화번호(studentMobile)를 입력받고
+		sava 라는 주소로 post 방식으로 전송
+		컨트롤러에서 StudnetDTO 객체로 입력한 정보를 받음 -->
+		<form action="/save" method="post">
+			이름:<input type="text" name="studentName"> <br>
+			학번:<input type="text" name="studentNumber"> <br>
+			전화번호:<input type="text" name="studentMobile"> <br>
+			<input type="submit" value="등록">
+		</form>
+</body>
+</html>
