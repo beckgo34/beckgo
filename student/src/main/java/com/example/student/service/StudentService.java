@@ -22,6 +22,10 @@ public class StudentService {
 	public List<StudentDTO> findAll() {
 		return studentRepository.finAll();
 	}
+
+	public StudentDTO findById(Long id) {
+		return studentRepository.findById(id);
+	}
 	
 
 }

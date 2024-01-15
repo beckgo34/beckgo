@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>학생 조회</h2>
+	<table>
+		<tr>
+			<td>
+				번호
+			</td>
+			<td th:text="${student.id}">				
+			</td>
+		</tr>
+		<tr>
+			<td>
+				이름
+			</td>
+			<td th:text="${student.studentName}">				
+			</td>
+		</tr>
+		<tr>
+			<td>
+				학번
+			</td>
+			<td th:text="${student.studentNumber}">				
+			</td>
+		</tr>		
+		<tr>
+			<td>
+				전화번호
+			</td>
+			<td th:text="${student.studentMobile}">				
+			</td>
+		</tr>		
+	</table>
+</body>
+</html>
