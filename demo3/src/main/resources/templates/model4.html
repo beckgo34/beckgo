@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>model4</h2>
+	<table>
+	<!-- for(DemoDTo d: list){
+		sysout(d.getName());
+	}
+	  -->
+		<tr th:each="demo: ${list}">
+			<td th:text="${demo.name}"></td>
+			<td th:text="${demo.age}"></td>
+		</tr>
+	</table>
+</body>
+</html>
