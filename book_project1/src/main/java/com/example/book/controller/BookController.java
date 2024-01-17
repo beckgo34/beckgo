@@ -28,7 +28,11 @@ public class BookController {
 	@PostMapping("/save")
 	public String save(@ModelAttribute BookDTO bookDTO) {
 		bookService.save(bookDTO);
-		return "index";
+		// 단순하게 list.html만 요청
+//		return "list";
+		// list 출력을 위해 list 주소 요청
+		// redirect: 컨트롤러의 메서드에서 다른 메서드의 주소를 요청하고자 할 때
+		return "redirect:/list";
 	}
 	
 	// 책 전체목록 조회
@@ -38,7 +42,7 @@ public class BookController {
 		model.addAttribute("bookList",bookDTOs);
 		return "list";
 	}
-	
+	// 책 조회
 	@GetMapping("/book/{id}")
 	public String findById(@PathVariable("id") Long id, Model model) {
 		BookDTO bookDTO = bookService.findById(id);

@@ -3,14 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	input {
+		/* input을 block으로 바꿔줌 */
+		display: block;
+	}
+</style>
 </head>
 <body>
 	<h2>save.html</h2>
 	<form action="/save" method="post">
-		도서명: <input type="text" name="bookName"> <br>
-		저자: <input type="text" name="bookAuthor"> <br>
-		출판사: <input type="text" name="bookPublisher"> <br>
-		가격: <input type="text" name="bookPrice"> <br>
+		도서명: <input type="text" name="bookName"> 
+		저자: <input type="text" name="bookAuthor"> 
+		출판사: <input type="text" name="bookPublisher"> 
+		가격: <input type="text" name="bookPrice"> 
 		<input type="submit" value="등록">
 	</form>
 </body>

@@ -3,9 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+table, tr, td, th {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+</style>
 </head>
 <body>
 	<h2>책 조회</h2>
+	<a href="/list">목록으로 돌아가기</a>
 	<table>
 		<tr>
 			<td>
@@ -16,14 +23,14 @@
 		</tr>
 		<tr>
 			<td>
-				책재목
+				도서명
 			</td>
 			<td th:text="${book.bookName}">				
 			</td>
 		</tr>
 		<tr>
 			<td>
-				작가
+				저자
 			</td>
 			<td th:text="${book.bookAuthor}">				
 			</td>
