@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>책 조회</h2>
+	<table>
+		<tr>
+			<td>
+				번호
+			</td>
+			<td th:text="${book.id}">				
+			</td>
+		</tr>
+		<tr>
+			<td>
+				책재목
+			</td>
+			<td th:text="${book.bookName}">				
+			</td>
+		</tr>
+		<tr>
+			<td>
+				작가
+			</td>
+			<td th:text="${book.bookAuthor}">				
+			</td>
+		</tr>		
+		<tr>
+			<td>
+				출판사
+			</td>
+			<td th:text="${book.bookPublisher}">				
+			</td>
+		</tr>	
+		<tr>
+			<td>
+				가격
+			</td>
+			<td th:text="${book.bookPrice}">				
+			</td>
+		</tr>			
+	</table>
+</body>
+</html>

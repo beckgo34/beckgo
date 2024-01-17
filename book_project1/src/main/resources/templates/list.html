@@ -1,19 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>list.html</h2>
+	<h2>책목록</h2>
 	<table>
-		<tr th:each = "book : ${bookList}">
+		<tr>
+			<th>책재목</th>
+			<th>작가</th>
+			<th>출판사</th>
+			<th>가격</th>
+			<th>조회</th>
+		</tr>
+		<tr th:each="book : ${bookList}">
+				<td>
+				<a th:href="@{|/book/${book.id}|}" th:text="${book.id}"></a>
+				</td>
 			<td th:text="${book.id}"></td>
 			<td th:text="${book.bookName}"></td>
 			<td th:text="${book.bookAuthor}"></td>
 			<td th:text="${book.bookPublisher}"></td>
 			<td th:text="${book.bookPrice}"></td>
+			<td>
+				<button th:onclick="detail([[${book.id}]])">조회</button>
+			</td>
 		</tr>
 	</table>
 </body>
+<script th:inline="javascript">
+	const detail = (id) => {
+		console.log("클릭한 id", id);
+		// 1번클릭 => /student/1, 2번클릭 => /student/2
+		// location.href = "/student/" + id;
+		location.href = `/book/${id}`;
+	}
+</script>
 </html>
+

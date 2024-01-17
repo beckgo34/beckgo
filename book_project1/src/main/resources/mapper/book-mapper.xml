@@ -11,4 +11,8 @@
 	<select id="findAll" resultType="com.example.book.dto.BookDTO">
 		select * from book_table
 	</select>
+	
+	<select id="findById" parameterType="com.example.book.dto.BookDTO" resultType="com.example.book.dto.BookDTO">
+		select * from book_table where id=#{id}
+	</select>
 </mapper>
