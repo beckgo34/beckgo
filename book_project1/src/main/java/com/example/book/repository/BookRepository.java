@@ -24,4 +24,8 @@ public class BookRepository {
 	public BookDTO findById(Long id) {
 		return sql.selectOne("Book.findById", id);
 	}
+
+	public void delete(Long id) {
+		sql.delete("Book.delete", id);
+	}
 }

@@ -20,6 +20,8 @@
 			<th>저자</th>
 			<th>출판사</th>
 			<th>가격</th>
+			<th>조회</th>
+			<th>삭제</th>
 		</tr>
 		<tr th:each="book : ${bookList}">
 				<td th:text="${book.id}">
@@ -31,7 +33,9 @@
 			<td th:text="${book.bookPrice}"></td>
 			<td>
 				<button th:onclick="detail([[${book.id}]])">조회</button>
-				<button th:onclick="detail([[${book.id}]])">삭제</button>
+			</td>
+			<td>
+				<button th:onclick="delete_fn([[${book.id}]])">삭제</button>
 			</td>
 		</tr>
 	</table>
@@ -42,6 +46,9 @@
 		// 1번클릭 => /student/1, 2번클릭 => /student/2
 		// location.href = "/student/" + id;
 		location.href = `/book/${id}`;
+	}
+	const delete_fn = (id) => {
+		location.href = `/book/delete/${id}`;
 	}
 </script>
 </html>

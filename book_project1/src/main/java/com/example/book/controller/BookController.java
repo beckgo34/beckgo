@@ -49,4 +49,11 @@ public class BookController {
 		model.addAttribute("book",bookDTO);
 		return "detail";
 	}
+	
+	@GetMapping("/book/delete/{id}")
+	public String delete(@PathVariable("id") Long id) {
+		bookService.delete(id);
+		// 삭제가 끝난 뒤 목록 출력
+		return "redirect:/list";
+	}
 }

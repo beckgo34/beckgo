@@ -15,4 +15,8 @@
 	<select id="findById" parameterType="Long" resultType="com.example.book.dto.BookDTO">
 		select * from book_table where id=#{id}
 	</select>
+	
+	<select id="delete" parameterType="Long">
+		delete from book_table where id=#{id}
+	</select>
 </mapper>
