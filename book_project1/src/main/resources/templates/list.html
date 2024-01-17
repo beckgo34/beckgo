@@ -22,6 +22,7 @@
 			<th>가격</th>
 			<th>조회</th>
 			<th>삭제</th>
+			<th>수정</th>
 		</tr>
 		<tr th:each="book : ${bookList}">
 				<td th:text="${book.id}">
@@ -37,6 +38,9 @@
 			<td>
 				<button th:onclick="delete_fn([[${book.id}]])">삭제</button>
 			</td>
+			<td>
+				<button th:onclick="update_fn([[${book.id}]])">수정</button>
+			</td>
 		</tr>
 	</table>
 </body>
@@ -49,6 +53,9 @@
 	}
 	const delete_fn = (id) => {
 		location.href = `/book/delete/${id}`;
+	}
+	const update_fn = (id) => {
+		location.href = `/book/update/${id}`;
 	}
 </script>
 </html>

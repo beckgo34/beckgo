@@ -35,14 +35,14 @@ public class BookController {
 		return "redirect:/list";
 	}
 	
-	// 책 전체목록 조회
+	// 전체목록 조회
 	@GetMapping("/list")
 	public String findAll(Model model) {
 		List<BookDTO> bookDTOs = bookService.findAll();
 		model.addAttribute("bookList",bookDTOs);
 		return "list";
 	}
-	// 책 조회
+	// 상세 조회
 	@GetMapping("/book/{id}")
 	public String findById(@PathVariable("id") Long id, Model model) {
 		BookDTO bookDTO = bookService.findById(id);
@@ -50,10 +50,44 @@ public class BookController {
 		return "detail";
 	}
 	
+	// 삭제 기능
 	@GetMapping("/book/delete/{id}")
 	public String delete(@PathVariable("id") Long id) {
 		bookService.delete(id);
 		// 삭제가 끝난 뒤 목록 출력
 		return "redirect:/list";
 	}
+	
+	// 수정 기능
+	@GetMapping("/book/update/{id}")
+	public String update(@PathVariable("id") Long id, Model model) {
+		BookDTO bookDTO = bookService.findById(id);
+		model.addAttribute("book", bookDTO);
+		return "update";
+	}
+	
+	@PostMapping("/update")
+	public String update(BookDTO bookDTO) {
+		System.out.println("BookDTO = " + bookDTO);
+		bookService.update(bookDTO);
+		return "redirect:/list";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

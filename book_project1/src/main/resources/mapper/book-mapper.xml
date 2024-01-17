@@ -19,4 +19,9 @@
 	<select id="delete" parameterType="Long">
 		delete from book_table where id=#{id}
 	</select>
+	
+	<update id="update" parameterType="com.example.book.dto.BookDTO">
+		update book_table set bookPublisher = #{bookPublisher}, bookPrice = #{bookPrice}
+			where id = #{id} 
+	</update>
 </mapper>

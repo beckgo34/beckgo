@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	input {
+		/* input을 block으로 바꿔줌 */
+		display: block;
+	}
+</style>
+</head>
+<body>
+	<h2>도서 수정 페이지</h2>
+	<form action="/update" method="post">
+		<input type="hidden" name="id" th:value="${book.id}">
+		도서명: <input type="text" name="bookName" th:value="${book.bookName}" readonly> 
+		저자: <input type="text" name="bookAuthor" th:value="${book.bookAuthor}" readonly> 
+		출판사: <input type="text" name="bookPublisher" th:value="${book.bookPublisher}"> 
+		가격: <input type="text" name="bookPrice" th:value="${book.bookPrice}"> 
+		<input type="submit" value="수정">
+	</form>
+</body>
+</html>
