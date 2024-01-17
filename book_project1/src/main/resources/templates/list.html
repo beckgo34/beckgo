@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>list.html</h2>
+	<table>
+		<tr th:each = "book : ${bookList}">
+			<td th:text="${book.id}"></td>
+			<td th:text="${book.bookName}"></td>
+			<td th:text="${book.bookAuthor}"></td>
+			<td th:text="${book.bookPublisher}"></td>
+			<td th:text="${book.bookPrice}"></td>
+		</tr>
+	</table>
+</body>
+</html>

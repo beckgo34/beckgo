@@ -7,4 +7,8 @@
 		insert into book_table(bookName, bookAuthor, bookPublisher, bookPrice)
 			values(#{bookName}, #{bookAuthor}, #{bookPublisher}, #{bookPrice})
 	</insert>
+	
+	<select id="findAll" resultType="com.example.book.dto.BookDTO">
+		select * from book_table
+	</select>
 </mapper>
