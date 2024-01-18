@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>자동차 이동경로 표시하기</title>
+</head>
+<body>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0ccbdeeeeb4de91d3ca76200d460fd56"></script>
+	<script th:inline="javascript">
+		const fromX = [[${fromPoint?.x}]];
+		const fromY = [[${fromPoint?.y}]];
+		const toX = [[${toPoint?.x}]];
+		const toY = [[${toPoint?.y}]];
+		
+		var pointList = JSON.parse([[${pointList}]])||[];
+	</script> 
+
+	<div id="map" style="width:100%;height:350px;"></div>
+
+	좌표로 변환 할 주소를 입력 하세요.
+	<form>
+		출발지 : <input type="text" name="fromAddress" th:value="${param.fromAddress}"/><button>변환</button>
+		<div th:if="${fromPoint != null}">
+			x:<span th:text="${fromPoint.x}"></span>, y:<span th:text="${fromPoint.y}"></span>
+		</div>
+		<br/>
+		목적지 : <input type="text" name="toAddress" th:value="${param.toAddress}"/><button>변환</button>
+		<div th:if="${toPoint != null}">
+			x:<span th:text="${toPoint.x}"></span>, y:<span th:text="${toPoint.y}"></span>
+		</div>
+		<br/>
+		<button onclick="start(); return false;">출발!!</button>
+	</form>
+	
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = { 
+		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };  
+		
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		
+		if(pointList.length > 0) {
+			// 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
+			var linePath = [];
+			for(var point of pointList) {
+				linePath.push(new kakao.maps.LatLng(point.y, point.x));
+			}
+			
+			// 지도에 표시할 선을 생성합니다
+			var polyline = new kakao.maps.Polyline({
+			    path: linePath, // 선을 구성하는 좌표배열 입니다
+			    strokeWeight: 5, // 선의 두께 입니다
+			    strokeColor: 'red', // 선의 색깔입니다
+			    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+			    strokeStyle: 'solid' // 선의 스타일입니다
+			});
+			// 지도에 선을 표시합니다 
+			polyline.setMap(map);
+		}
+		
+		
+		// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
+		var bounds = new kakao.maps.LatLngBounds();
+		if(fromY != null) {
+	    	bounds.extend(new kakao.maps.LatLng(fromY, fromX));
+	    	map.setBounds(bounds);      
+		}
+		if(toY != null) {
+	    	bounds.extend(new kakao.maps.LatLng(toY, toX));
+	    	map.setBounds(bounds);  
+		}
+		
+		var customOverlay;
+		// 자동차 그리기!!
+		if(fromY != null) {
+			// 커스텀 오버레이에 표시할 내용입니다     
+			// HTML 문자열 또는 Dom Element 입니다 
+			var content = '<img src="/racing-car-303766_640.png" style="width:70px; transform:rotate(10deg)">';
+			
+			// 커스텀 오버레이가 표시될 위치입니다 
+			var position = new kakao.maps.LatLng(fromY, fromX);  
+			
+			// 커스텀 오버레이를 생성합니다
+			customOverlay = new kakao.maps.CustomOverlay({
+			    position: position,
+			    content: content   
+			});
+			
+			// 커스텀 오버레이를 지도에 표시합니다
+			customOverlay.setMap(map);
+		}
+		
+		
+		function moveVehicle(point) {
+			var position = new kakao.maps.LatLng(point.y, point.x);
+			customOverlay.setPosition(position);
+			customOverlay.setMap(map);
+		}
+		
+		var interval, pointIndex;
+		function start() {
+			if(pointList.length > 0) {
+				pointIndex = 0;
+				interval = setInterval(function() {
+					moveVehicle(pointList[pointIndex]);
+					pointIndex++;
+					if(pointIndex >= pointList.length) {
+						clearInterval(interval);
+					}
+				}, 90);
+			}
+		}	
+	</script>
+
+</body>
+</html>

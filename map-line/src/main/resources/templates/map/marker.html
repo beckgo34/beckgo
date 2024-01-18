@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>출발지와 목적지를 지도상에 표시하기</title>
+    
+</head>
+<body>
+<div id="map" style="width:100%;height:350px;"></div>
+<p>
+<button onclick="setBounds()">지도 범위 재설정 하기</button> 
+
+	좌표로 변환 할 주소를 입력 하세요.
+	<form>
+		출발지 : <input type="text" name="fromAddress" th:value="${param.fromAddress}"/><button>변환</button>
+		<div th:if="${fromPoint != null}">
+			x:<span th:text="${fromPoint.x}"></span>, y:<span th:text="${fromPoint.y}"></span>
+		</div>
+		<br/>
+		목적지 : <input type="text" name="toAddress" th:value="${param.toAddress}"/><button>변환</button>
+		<div th:if="${toPoint != null}">
+			x:<span th:text="${toPoint.x}"></span>, y:<span th:text="${toPoint.y}"></span>
+		</div>
+	</form>
+</p>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0ccbdeeeeb4de91d3ca76200d460fd56"></script>
+<script th:inline="javascript">
+	// 버튼을 클릭하면 아래 배열의 좌표들이 모두 보이게 지도 범위를 재설정합니다
+    var points = [
+	    new kakao.maps.LatLng( [[${fromPoint?.y}]], [[${fromPoint?.x}]]),
+	    new kakao.maps.LatLng( [[${toPoint?.y}]], [[${toPoint?.x}]]),
+	];
+</script> 
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+ 
+
+// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
+var bounds = new kakao.maps.LatLngBounds();    
+
+var i, marker;
+for (i = 0; i < points.length; i++) {
+    // 배열의 좌표들이 잘 보이게 마커를 지도에 추가합니다
+    marker =     new kakao.maps.Marker({ position : points[i] });
+    marker.setMap(map);
+    
+    // LatLngBounds 객체에 좌표를 추가합니다
+    bounds.extend(points[i]);	
+}
+
+function setBounds() {
+    // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
+    // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
+    map.setBounds(bounds);
+}
+</script>
+</body>
+</html>
