@@ -30,4 +30,13 @@
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.example.book.dto.BookDTO"/>
+    <fullyQualifiedTypeName name="com.graphhopper.jsprit.examples.MultipleTimeWindowExample"/>
+    <fullyQualifiedTypeName name="com.graphhopper.jsprit.analysis.toolbox.GraphStreamViewer.Label"/>
+    <fullyQualifiedTypeName name="com.graphhopper.jsprit.analysis.toolbox.Plotter"/>
+    <fullyQualifiedTypeName name="com.graphhopper.jsprit.analysis.toolbox.GraphStreamViewer"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="com.graphhopper.jsprit.core.algorithm.box.Jsprit.Builder"/>
+    <fullyQualifiedTypeName name="com.graphhopper.jsprit.core.problem.vehicle.VehicleImpl"/>
+    <fullyQualifiedTypeName name="com.graphhopper.jsprit.core.problem.vehicle.VehicleImpl.Builder"/>
+    <fullyQualifiedTypeName name="com.graphhopper.jsprit.core.problem.Location"/>
 </qualifiedTypeNameHistroy>
